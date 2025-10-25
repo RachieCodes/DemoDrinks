@@ -1,0 +1,148 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  description String?
+  image       String?
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("categories")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  price       Float
+  image       String?
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  available   Boolean  @default(true)
+  
+  // Customization options
+  sizes       String[] // ["Small", "Medium", "Large"]
+  sweetness   String[] // ["0%", "25%", "50%", "75%", "100%"]
+  toppings    String[] // ["Boba", "Jelly", "Pudding", "Popping Boba"]
+  
+  orderItems  OrderItem[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("products")
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  phone     String?
+  address   String?
+  orders    Order[]
+  loyaltyPoints Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("customers")
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  customer      Customer    @relation(fields: [customerId], references: [id])
+  customerId    String
+  status        OrderStatus @default(PENDING)
+  type          OrderType   @default(PICKUP)
+  total         Float
+  subtotal      Float
+  tax           Float
+  tip           Float       @default(0)
+  
+  // Payment info
+  stripePaymentIntentId String?
+  paymentStatus PaymentStatus @default(PENDING)
+  
+  // Delivery info
+  deliveryAddress String?
+  deliveryFee     Float   @default(0)
+  estimatedTime   Int?    // minutes
+  
+  items         OrderItem[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String @id @default(cuid())
+  order     Order  @relation(fields: [orderId], references: [id])
+  orderId   String
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+  quantity  Int
+  price     Float
+  
+  // Customizations
+  size      String?
+  sweetness String?
+  toppings  String[] // Selected toppings
+  notes     String?  // Special instructions
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("order_items")
+}
+
+model Staff {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  name      String
+  role      StaffRole @default(EMPLOYEE)
+  phone     String?
+  active    Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("staff")
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PREPARING
+  READY
+  COMPLETED
+  CANCELLED
+}
+
+enum OrderType {
+  PICKUP
+  DELIVERY
+  DINE_IN
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum StaffRole {
+  ADMIN
+  MANAGER
+  EMPLOYEE
+}
