@@ -1,95 +1,86 @@
 import Link from 'next/link';
-import { Instagram, Facebook, Twitter, MapPin, Phone, Mail } from 'lucide-react';
+import { Instagram, Facebook, Twitter, MapPin, Phone, Mail, Coffee } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-black/90 text-white border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">BB</span>
+          <div className="space-y-6 md:col-span-2">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">B</span>
               </div>
-              <span className="text-xl font-bold">Brew&Bloom</span>
+              <span className="text-2xl font-light tracking-wide">Brew&Bloom</span>
             </div>
-            <p className="text-gray-400 text-sm">
-              Premium tea, coffee, and boba drinks made with love and the finest ingredients.
+            <p className="text-white/70 text-lg font-light leading-relaxed max-w-md">
+              Where premium bubble tea meets artisan coffee in perfect harmony. 
+              Every sip crafted with passion and the finest ingredients.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Instagram className="w-5 h-5" />
+            <div className="flex space-x-6">
+              <a href="#" className="text-white/60 hover:text-amber-400 transition-colors p-2 rounded-full hover:bg-white/5">
+                <Instagram className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Facebook className="w-5 h-5" />
+              <a href="#" className="text-white/60 hover:text-amber-400 transition-colors p-2 rounded-full hover:bg-white/5">
+                <Facebook className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Twitter className="w-5 h-5" />
+              <a href="#" className="text-white/60 hover:text-amber-400 transition-colors p-2 rounded-full hover:bg-white/5">
+                <Twitter className="w-6 h-6" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
-            <div className="space-y-2 text-sm">
-              <Link href="/menu" className="text-gray-400 hover:text-white block transition-colors">
+            <h3 className="text-xl font-light mb-6 tracking-wide">Quick Links</h3>
+            <div className="space-y-3">
+              <Link href="/menu" className="text-white/70 hover:text-white block transition-colors font-light">
                 Menu
               </Link>
-              <Link href="/about" className="text-gray-400 hover:text-white block transition-colors">
+              <Link href="/about" className="text-white/70 hover:text-white block transition-colors font-light">
                 About Us
               </Link>
-              <Link href="/contact" className="text-gray-400 hover:text-white block transition-colors">
+              <Link href="/contact" className="text-white/70 hover:text-white block transition-colors font-light">
                 Contact
               </Link>
-              <Link href="/careers" className="text-gray-400 hover:text-white block transition-colors">
+              <Link href="/careers" className="text-white/70 hover:text-white block transition-colors font-light">
                 Careers
-              </Link>
-            </div>
-          </div>
-
-          {/* Customer Service */}
-          <div>
-            <h3 className="font-semibold mb-4">Customer Service</h3>
-            <div className="space-y-2 text-sm">
-              <Link href="/faq" className="text-gray-400 hover:text-white block transition-colors">
-                FAQ
-              </Link>
-              <Link href="/orders" className="text-gray-400 hover:text-white block transition-colors">
-                Track Order
-              </Link>
-              <Link href="/returns" className="text-gray-400 hover:text-white block transition-colors">
-                Returns
-              </Link>
-              <Link href="/support" className="text-gray-400 hover:text-white block transition-colors">
-                Support
               </Link>
             </div>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-semibold mb-4">Contact Info</h3>
-            <div className="space-y-3 text-sm">
-              <div className="flex items-center space-x-2 text-gray-400">
-                <MapPin className="w-4 h-4" />
-                <span>123 Boba Street, Tea City, TC 12345</span>
+            <h3 className="text-xl font-light mb-6 tracking-wide">Contact</h3>
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3 text-white/70 group">
+                <MapPin className="w-5 h-5 mt-1 group-hover:text-amber-400 transition-colors" />
+                <span className="font-light leading-relaxed">123 Boba Street<br />Tea City, TC 12345</span>
               </div>
-              <div className="flex items-center space-x-2 text-gray-400">
-                <Phone className="w-4 h-4" />
-                <span>(555) 123-BOBA</span>
+              <div className="flex items-center space-x-3 text-white/70 group">
+                <Phone className="w-5 h-5 group-hover:text-amber-400 transition-colors" />
+                <span className="font-light">(555) 123-BOBA</span>
               </div>
-              <div className="flex items-center space-x-2 text-gray-400">
-                <Mail className="w-4 h-4" />
-                <span>hello@brewandbloom.com</span>
+              <div className="flex items-center space-x-3 text-white/70 group">
+                <Mail className="w-5 h-5 group-hover:text-amber-400 transition-colors" />
+                <span className="font-light">hello@brewandbloom.com</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; 2025 Brew&Bloom. All rights reserved.</p>
+        {/* Bottom Bar */}
+        <div className="border-t border-white/10 mt-16 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p className="text-white/60 font-light text-sm">
+              &copy; 2025 Brew&Bloom. Crafted with passion.
+            </p>
+            <div className="flex items-center space-x-2 text-white/60">
+              <Coffee className="w-4 h-4" />
+              <span className="text-sm font-light">Premium Quality Since 2024</span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
